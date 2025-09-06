@@ -27,7 +27,7 @@ exports.ox_inventory:registerHook('swapItems', function(payload)
     local toInventoryId = payload.toInventory
     local item          = payload.fromSlot
     local count         = tonumber(payload.count) or 0
-
+    if payload.toSlot == 2 then return false end
     if toInventoryId == bbqStashes[toInventoryId] and item.name ~= 'rawmeat' then
         TriggerClientEvent("ox_lib:notify", src,
             { description = "Ceci est un Barbecue, vous pouvez mettre uniquement de la viande crue", position = 'top' })
